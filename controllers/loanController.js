@@ -4,19 +4,19 @@ const APIFeatures = require('../dataBaseManager/loanDbContext');
 exports.getAllLoans =   async (req, res) => {
   try {
     // EXECUTE QUERY
-    const features = new APIFeatures(customerLoan.find(), req.query)
+    const features = new APIFeatures(customerLoan.find(), {})
       .filter()
       .sort()
       .limitFields()
       .paginate();
-    const customerloan = await features.query;
+    const loans = await features.query;
 
     // SEND RESPONSE
     res.status(200).json({
       status: 'success',
-      results: customerloan.length,
+      results: loans.length,
       data: {
-        customerLoan
+        loans
       }
     });
   } catch (err) {
